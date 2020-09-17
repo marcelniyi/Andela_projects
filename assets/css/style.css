@@ -1,0 +1,233 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F5F5F5;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: white;
+}
+
+.navbar a {
+  float: left;
+  color: #0078FF;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar h3{
+  float: left;
+  color: #0078FF;
+  text-align: center;
+  font-size: 17px;
+  margin-left: 40px;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.navbar-links {
+  float: right;
+  margin-right: 30px;
+}
+
+.profile-name{
+  margin-top: 40px;
+  margin-left: 30px;
+  width: 95%;
+  height: 258px;
+  background: #0078FF;
+  border-radius: 50px;
+}
+
+.profile-name h2 {
+
+  position: absolute;
+  top: 150px;
+  left: calc(70% - 727px/2 - 34.5px);
+  font-family: Podkova;
+  font-style: normal;
+  font-weight: bold;
+
+  color: #FFFFFF;
+}
+
+.profile-name span {
+  position: absolute;
+  width: 559px;
+  height: 58px;
+  left: 360px;
+  top: 230px;
+
+  font-family: Podkova;
+  font-style: normal;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+
+.about-us {
+  margin-top: 40px;
+  margin-left: 30px;
+  height: auto;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 95%;
+  background: #FFFFFF;
+}
+
+.profile-img {
+  width: 200px;
+  height: 170px;
+  margin-left: 30px;
+  margin-top: 20px;
+  border-radius: 50%;
+}
+
+.profile-names {
+  float: right;
+  margin-right: 50px;
+  margin-top: 50px;
+
+}
+.profile-names table tr {
+  height: 30px;
+}
+
+.profile-names table tr span {
+  font-weight: bold;
+}
+
+.profile-skills {
+  margin: 50px;
+}
+
+.profile-skills .skill {
+  background-color: #CDE1F8;
+  width: 100%;
+}
+
+.skills-list, .skill-item{
+  padding-top: 20px;
+}
+
+.progress {
+    float: right;
+}
+
+
+.profile-skills .skill .skill-length {
+  background-color: #0078FF;
+  height:14px;
+}
+
+.about-me h1 {
+  font-family: Roboto Mono;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 30px;
+  text-align: center;
+
+
+  color: #000000;
+}
+
+.line{
+  margin: auto;
+  padding-top: -20px;
+  width: 140px;
+  height: 47px;
+  border-bottom: 5px solid #0078FF;
+  text-align: center;;
+}
+
+.about-me p {
+  font-size: 30px;
+}
+
+/* BLOG PART */
+
+.blog-part {
+  margin: 30px;
+  width: 95%;
+}
+
+.blog-part h2 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.blog-part p {
+  text-align: center;
+}
+
+.blog-sample {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+
+
+.blog-item .container {
+  background-color: white;
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-item .container img {
+  height: 170px;
+  width: 100%;
+}
+
+.blog-item .posted-by {
+  background-color: #F5F5F5;
+  border: 1px solid white;
+  padding: 10px;
+}
+
+.blog-item .posted-by span {
+  padding-right: 50px;
+  font-style: italic;
+}
+
+
+/* contact us section */
+
+.contact {
+  
+}
+
+.contact-us {
+  background-image: url("../images/overlay-bg.jpg");
+  height: 400px;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 60px;
+
+}
+
+.contact-us .contact-form {
+  background-color: white;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+.contact-us .contact-msg {
+  background-color: white;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
