@@ -311,8 +311,6 @@ input[type=text], textarea {
 
 .msg-header span {
   padding-left: 10px;
-  margin-top: -50px;
-
 }
 
 .msg-header img {
@@ -320,10 +318,6 @@ input[type=text], textarea {
    width: 30px;
    height: 30px;
  }
-
-
-
-
 
 .footer {
   left: 0;
@@ -333,4 +327,107 @@ input[type=text], textarea {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 50px;
+}
+
+
+/* .register-container .register-form {
+  grid-area: form;
+
+}
+
+.register-container .register-msg {
+  grid-area: msg;
+
+} */
+
+.register-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 50px;
+  padding:30px;
+  border-radius: 50px;
+  background-color: white;
+}
+
+
+.header2 {grid-area: header;}
+.logo {grid-area: logo;}
+.message {grid-area: message;}
+
+
+
+.register-form .contain {
+  background-color: #DEE7FD;
+
+}
+
+
+.contain .form-message {
+  display: grid;
+  grid-template-areas:
+  'header logo'
+  'message logo';
+  padding: 30px;
+  margin-left: 25px;
+
+}
+
+.register-form form input[type=text] {
+  width: 80%;
+  padding: 12px 20px;
+  margin-top: 20px;
+  margin-left: 40px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.register-form form {
+  background-color: #F4F4F4;
+}
+
+.register-form form input[type=checkbox] {
+
+  margin-top: 20px;
+  margin-left: 40px;
+  display: inline-block;
+}
+
+.register-form form input[type=submit]{
+  background-color: #0078FF;
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   font-size: 16px;
+   border-radius: 14px;
+   width: 80%;
+}
+
+.register-msg {
+  margin: auto;
+  text-align: center;
+
+}
+
+.register-msg h2 {
+  font-size: 40px;
+  color: #0078FF;
+  font-weight: bold;
+}
+
+.register-msg button {
+  background-color: #0078FF;
+  margin-top: 20px;
+
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   font-size: 16px;
+   border-radius: 14px;
+
 }
