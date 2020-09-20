@@ -27,8 +27,8 @@ body {
 }
 
 .navbar a:hover {
-  background-color: #ddd;
-  color: black;
+  text-decoration: underline;
+  text-decoration-color: #0078FF;
 }
 
 .navbar a.active {
@@ -149,7 +149,7 @@ body {
   width: 140px;
   height: 47px;
   border-bottom: 5px solid #0078FF;
-  text-align: center;;
+  text-align: center;
 }
 
 .about-me p {
@@ -207,13 +207,24 @@ body {
 /* contact us section */
 
 .contact {
-  
+  background-image: url("../images/overlay-bg.jpg");
+  height: auto;
+  width: 100%;
+  margin-left: 0;
+  margin-top: 50px;
+}
+
+.contact .container {
+  background-color: #0078FF;
+  top: 0;
+  left: 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .7;
 }
 
 .contact-us {
-  background-image: url("../images/overlay-bg.jpg");
-  height: 400px;
-  margin-top: 50px;
   display: grid;
   grid-template-columns: 50% 50%;
   padding: 60px;
@@ -226,8 +237,100 @@ body {
   border-bottom-left-radius: 50px;
 }
 
+.contact-form h2, .contact-msg h2 {
+  padding-top: 30px;
+  padding-left: 40px;
+}
+
+.contact-form .umurongo, .contact-msg .umurongo {
+  width: 140px;
+  margin-left: 40px;
+  border-bottom: 5px solid #0078FF;
+  text-align: center;
+}
+
+
 .contact-us .contact-msg {
   background-color: white;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
+}
+
+
+.input1 { grid-area: input1; padding:10px; }
+.input2 { grid-area: input2; padding:10px; }
+.input3 { grid-area: input3; padding:10px; }
+.input4 { grid-area: input4; padding:10px; }
+
+
+.form-grid {
+  display: grid;
+  grid-template-areas:
+  'input1 input2'
+  'input3 input3'
+  'input4 input4';
+  padding: 30px;
+
+}
+
+input[type=text], textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.input3 textarea {
+  width: 100%;
+  height: 200px;
+  resize: none;
+}
+
+
+.input4 input[type=submit]{
+  background-color: #0078FF;
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   font-size: 16px;
+   border-radius: 14px;
+   margin-left: 40%;
+}
+
+
+.msg-header {
+  padding: 30px;
+}
+
+.msg-header {
+  display: inline-block;
+}
+
+.msg-header span {
+  padding-left: 10px;
+  margin-top: -50px;
+
+}
+
+.msg-header img {
+  padding: 10px;
+   width: 30px;
+   height: 30px;
+ }
+
+
+
+
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 50px;
 }
