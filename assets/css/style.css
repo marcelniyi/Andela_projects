@@ -644,3 +644,103 @@ input[type=text], textarea {
 .recents .stories .singl-line a {
   text-decoration: none;
 }
+
+
+
+.resume-body {
+  margin: 50px;
+  border: 1px solid #DEE7FD;;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.resume-body .resume {
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  color: white;
+  text-align: center;
+  background-color: #0078FF;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 20px;
+}
+
+.resume-body .skills {
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+}
+
+
+.left .skill-section, .right .skill-section {
+
+  background-color: white;
+  margin: 50px;
+}
+
+.skill-section .top-line {
+  width: 100%;
+  height: 10px;
+  margin-left: 0;
+}
+
+#date {
+  margin:30px 30px;
+  color: #CBC6C6;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.left h3, .right h3 {
+  font-size: 20px;
+  margin-left: 50px;
+  margin-bottom: -20px;
+}
+
+.skill-section h3 {
+  font-size: 20px;
+  margin: 30px;
+}
+
+.skill-section h4{
+  margin-left: 30px;
+  padding-bottom: 10px;
+}
+
+.center {
+  justify-content: center;
+  padding: 40%;
+}
+
+.center .center-line {
+  width: 10px;
+  height: 800px;
+  background-color: blue;
+}
+
+.lang {
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+
+.skill-languages {
+  background-color: #0078FF;
+  border-radius: 10px;
+  height:18px;
+}
+
+.lang-length {
+  background-color: #CDE1F8;
+  border-radius: 10px;
+}
+
+#name {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+
+.lang-container {
+  padding: 30px 0;
+}
