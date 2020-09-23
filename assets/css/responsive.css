@@ -1,0 +1,393 @@
+@media (max-width: 1025px){
+.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  .navbar .navbar-links a{
+    font-size: 16px;
+  }
+}
+
+
+
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .checkbtn{
+    display: block;
+    color: blue;
+  }
+  .navbar-links {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  .navbar-links a{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  .navbar .navbar-links a{
+    font-size: 20px;
+  }
+
+  #check:checked ~ .navbar-links {
+    left: 0;
+}
+
+/* end of navbar */
+
+.header h1 {
+  font-size: 20px;
+}
+
+.header p {
+  font-size: 10px;
+}
+
+
+/* end of header */
+
+.about-us .skills {
+  grid-area: skills;
+}
+
+.about-us .about-me {
+  grid-area: aboutme;
+}
+
+.about-us {
+  display: grid;
+  grid-template-areas:
+  'skills skills'
+  'aboutme aboutme';
+}
+
+.skills img {
+  justify-content: center;
+  margin-left: 90px;
+}
+
+.profile-names table {
+  justify-content: center;
+}
+
+.profile-skills h3 {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.about-me p {
+  font-size: 20px;
+  padding: 20px 20px;
+}
+
+.blog-sample {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.blog-item {
+  padding: 20px;
+}
+
+/* end blog content */
+
+.contact-us {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.contact-us .contact-form {
+  border-radius: 30px;
+}
+
+.contact-us .contact-msg {
+  border-radius: 30px;
+}
+
+
+
+.contact {
+  height: 100%;
+}
+.contact .container {
+  height: 100%;
+}
+
+
+/* responsive for resume page */
+
+.skills .left {
+  grid-area: left;
+}
+.skills .right {
+  grid-area: right;
+}
+
+
+.resume-body .skills {
+  display: grid;
+grid-template-areas:
+'left left'
+  'right right';
+}
+
+.center {
+  display: none;
+}
+
+.left .skill-section, .right .skill-section {
+
+  margin: 30px;
+  width: 150%;
+
+}
+
+.lang {
+  width: 140%;
+}
+
+/* start of responsive blog*/
+
+
+
+.blog-container .blogs {
+  display: grid;
+  grid-template-columns: auto;
+  padding: 30px;
+}
+
+.blogs .years {
+  display: none;
+}
+
+/* start of responsive register and login */
+
+.register-container {
+  display: grid;
+  grid-template-columns: auto;
+  margin: 10px;
+  padding:5px;
+  border-radius: 10px;
+}
+
+
+
+/* start of responsive for single blog post  */
+
+.blog-content {
+  display: grid;
+  grid-template-columns: auto;
+  padding: 5px;
+  margin: 5px;
+}
+
+.blog-content .right-side {
+  display: none;
+}
+
+
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+
+  .checkbtn{
+    display: block;
+    color: blue;
+  }
+  .navbar-links {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  .navbar-links a{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  .navbar .navbar-links a{
+    font-size: 20px;
+  }
+
+  #check:checked ~ .navbar-links {
+    left: 0;
+  }
+
+  /* end of navbar */
+
+  .header h1 {
+  font-size: 20px;
+  }
+
+  .header p {
+  font-size: 10px;
+  }
+
+
+  /* end of header */
+
+  .about-us .skills {
+  grid-area: skills;
+  }
+
+  .about-us .about-me {
+  grid-area: aboutme;
+  }
+
+  .about-us {
+  display: grid;
+  grid-template-areas:
+  'skills skills'
+  'aboutme aboutme';
+  }
+
+  .skills img {
+  justify-content: center;
+  margin-left: 90px;
+  }
+
+  .profile-names table {
+  justify-content: center;
+  }
+
+  .profile-skills h3 {
+  text-align: center;
+  padding-top: 40px;
+  }
+
+  .about-me p {
+  font-size: 20px;
+  padding: 20px 20px;
+  }
+
+  .blog-sample {
+  display: grid;
+  grid-template-columns: auto;
+  }
+
+  .blog-item {
+  padding: 20px;
+  }
+
+  /* end blog content */
+
+  .contact-us {
+  display: grid;
+  grid-template-columns: auto;
+  }
+
+  .contact-us .contact-form {
+  border-radius: 30px;
+  }
+
+  .contact-us .contact-msg {
+  border-radius: 30px;
+  }
+
+
+
+  .contact {
+  height: 100%;
+  }
+  .contact .container {
+  height: 100%;
+  }
+
+
+  /* responsive for resume page */
+
+  .skills .left {
+  grid-area: left;
+  }
+  .skills .right {
+  grid-area: right;
+  }
+
+
+  .resume-body .skills {
+  display: grid;
+  grid-template-areas:
+  'left left'
+  'right right';
+  }
+
+  .center {
+  display: none;
+  }
+
+  .left .skill-section, .right .skill-section {
+
+  margin: 30px;
+  width: 150%;
+
+  }
+
+  .lang {
+  width: 140%;
+  }
+
+  /* start of responsive blog*/
+
+
+
+  .blog-container .blogs {
+  display: grid;
+  grid-template-columns: auto;
+  padding: 30px;
+  }
+
+  .blogs .years {
+  display: none;
+  }
+
+  /* start of responsive register and login */
+
+  .register-container {
+  display: grid;
+  grid-template-columns: auto;
+  margin: 10px;
+  padding:5px;
+  border-radius: 10px;
+  }
+
+
+
+  /* start of responsive for single blog post  */
+
+  .blog-content {
+  display: grid;
+  grid-template-columns: auto;
+  padding: 5px;
+  margin: 5px;
+  }
+
+  .blog-content .right-side {
+  display: none;
+  }
+
+
+
+
+
+
+
+}

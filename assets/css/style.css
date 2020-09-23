@@ -4,6 +4,20 @@ body {
   background-color: #F5F5F5;
 }
 
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+
+
 .navbar {
   overflow: hidden;
   background-color: white;
@@ -41,38 +55,16 @@ body {
   margin-right: 30px;
 }
 
-.profile-name{
-  margin-top: 40px;
-  margin-left: 30px;
-  width: 95%;
-  height: 258px;
+
+
+.header {
+  margin: 30px 40px;
+  padding: 60px;
+  text-align: center;
   background: #0078FF;
-  border-radius: 50px;
-}
-
-.profile-name h2 {
-
-  position: absolute;
-  top: 150px;
-  left: calc(70% - 727px/2 - 34.5px);
-  font-family: Podkova;
-  font-style: normal;
-  font-weight: bold;
-
-  color: #FFFFFF;
-}
-
-.profile-name span {
-  position: absolute;
-  width: 559px;
-  height: 58px;
-  left: 360px;
-  top: 230px;
-
-  font-family: Podkova;
-  font-style: normal;
-  font-weight: bold;
-  color: #FFFFFF;
+  color: white;
+  font-size: 30px;
+  border-radius: 40px;
 }
 
 
