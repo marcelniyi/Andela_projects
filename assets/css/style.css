@@ -265,7 +265,7 @@ body {
 
 }
 
-input[type=text], textarea {
+input[type=text], input[type=password], textarea {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -735,4 +735,156 @@ input[type=text], textarea {
 
 .lang-container {
   padding: 30px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* starting of admin panel pages css */
+
+.topnav {
+  background-color: #2196F3;
+}
+
+.topnav {
+  color: white;
+  padding: 15px;
+  font-size: 17px;
+  box-shadow: 5px 10px 8px #888888;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.topnav-right img {
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-top: -40px;
+}
+
+
+.admin-container {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.admin-leftnav {
+  background-color: #2196F3;
+  height: 100%;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+
+.dash-logo a img {
+  padding: 5px;
+  width: 70px;
+  background-color: #65BAFE;
+  border-radius: 10px;
+  margin-left: 25px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+
+.admin-space .containing {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  padding: 70px;
+}
+
+.containing .four-block {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.containing .log-list {
+  background-color: #2196F3;
+  padding: 10px;
+  color: white;
+  text-align: center;
+
+}
+
+.containing .log-list h3 {
+  text-decoration: underline;
+}
+
+
+.four-block .block {
+  padding: 40px;
+  background-color: #2196F3;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 50px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.block a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+}
+
+
+.articles-container {
+  margin: 60px;
+}
+
+.articles-container .contains {
+  background-color: white;
+  padding: 50px;
+  border-radius: 20px;
+
+}
+
+
+.articles-container .contains .atricles{
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
+  margin: 20px;
+}
+
+.articles-container .contains .question-section{
+  display: grid;
+  grid-template-columns: 40% 20% 10% 20%;
+  margin: 20px;
+}
+
+#update {
+  padding: 20px;
+  color: green;
+  text-decoration: none;
+}
+
+#delete {
+  padding: 20px;
+  color: red;
+  text-decoration: none;
+}
+
+#newboutton {
+  text-decoration: none;
+  padding: 10px;
+  color: white;
+  background-color: #2196F3;
+}
+
+
+.newpost-section .submit input[type=submit]{
+  background-color: #0078FF;
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   font-size: 16px;
+   border-radius: 14px;
+   margin-left: 40%;
 }
