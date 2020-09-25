@@ -1,8 +1,5 @@
 @media (max-width: 1025px){
-.logo{
-    font-size: 30px;
-    padding-left: 50px;
-  }
+
   .navbar .navbar-links a{
     font-size: 16px;
   }
@@ -16,8 +13,8 @@
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
-    .logo{
-        font-size: 70px;
+    .navbar .logo{
+        font-size: 40px;
         padding-left: 50px;
       }
       .navbar .navbar-links a{
@@ -26,25 +23,39 @@
 
   .checkbtn{
     display: block;
-    color: blue;
+    color: #0078FF;
+    font-size: 40px;
+    padding: 40px 30px 40px 0px;
   }
   .navbar-links {
     position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #2c3e50;
+    width: 70%;
+    height: auto;
+    background: #0078FF;
     top: 80px;
     left: -100%;
     text-align: center;
     transition: all .5s;
   }
+
+
   .navbar-links a{
     display: block;
     margin: 50px 0;
     line-height: 30px;
+    padding: 30px;
+    float: none;
+    color: white;
   }
+
+  .navbar-links a:hover {
+    /* text-decoration: underline; */
+    background-color: green;
+  }
+
+
   .navbar .navbar-links a{
-    font-size: 20px;
+    font-size: 50px;
   }
 
   #check:checked ~ .navbar-links {
@@ -174,6 +185,7 @@
 
 .contact {
   height: 100%;
+  font-size: 20px;
 }
 .contact .container {
   height: 50%;
@@ -183,6 +195,9 @@
   display: none;
 }
 
+input[type=text], textarea {
+  font-size: 50px;
+}
 
 /* responsive for resume page */
 
@@ -230,6 +245,8 @@ grid-template-areas:
   display: none;
 }
 
+
+
 /* start of responsive register and login */
 
 .register-container {
@@ -238,8 +255,21 @@ grid-template-areas:
   margin: 10px;
   padding:5px;
   border-radius: 10px;
+
 }
 
+
+.register-container input[type=text] {
+  font-size: 40px;
+}
+
+.form-message .message span {
+  font-size: 30px;
+}
+
+.register-msg span{
+  font-size: 30px;
+  }
 
 
 /* start of responsive for single blog post  */
