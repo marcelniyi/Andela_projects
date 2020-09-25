@@ -48,10 +48,7 @@
     color: white;
   }
 
-  .navbar-links a:hover {
-    /* text-decoration: underline; */
-    background-color: green;
-  }
+
 
 
   .navbar .navbar-links a{
@@ -81,6 +78,10 @@
 
 .about-us .about-me {
   grid-area: aboutme;
+}
+
+.about-us .about-me p {
+  font-size: 25px;
 }
 
 .about-us {
