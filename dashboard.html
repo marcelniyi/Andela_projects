@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+
+    <script type="text/javascript" src="assets/js/adminConfig.js"></script>
+
 
   </head>
   <body style="background-color: #E9E9E9">
@@ -14,9 +21,9 @@
         <h2>Admin panel</h2>
       </div>
       <div class="topnav-right">
-        <h4>marcelniyi@gmail.com</h4><a href="index.html">
-          <img src="assets/images/logout1.png" alt="">
-
+        <h4>marcelniyi@gmail.com</h4>
+        <a href="#" class="logout">
+          <img src="assets/images/logout1.png" alt="logout">
         </a>
 
       </div>
@@ -24,6 +31,7 @@
 
     <div class="admin-container">
       <div class="admin-leftnav">
+      <div class="" style="position: fixed;">
 
         <div class="dash-logo">
           <a href="dashboard.html"><img src="assets/images/dashboard.svg" alt="dashboard"></a>
@@ -40,6 +48,7 @@
         </div>
 
 
+      </div>
       </div>
       <div class="admin-space">
 
@@ -76,7 +85,7 @@
             <div class="block">
               <a href="#">
                 <h3>Total entry</h3>
-                <h3>5</h3>
+                <h3 id="entries"></h3>
 
               </a>
 
@@ -98,10 +107,8 @@
           <div class="log-list">
             <h3>System logs</h3>
 
-            <h4><span>Loged in </span>10/11/2020</h4>
-            <h4><span>Loged in </span>10/11/2020</h4>
-            <h4><span>Loged in </span>10/11/2020</h4>
-            <h4><span>Loged in </span>10/11/2020</h4>
+
+
           </div>
         </div>
 
@@ -112,6 +119,35 @@
 
 
     </div>
-
   </body>
+  <script type="text/javascript">
+
+
+  document.querySelector(".topnav-right")
+  document.querySelector('a[class=logout]').addEventListener('click', (e) => {
+    e.preventDefault();
+    firebase.auth().signOut().then(() => {
+      localStorage.removeItem("users");
+      localStorage.removeItem("user");
+      window.location.href = "index.html";
+    })
+  });
+
+
+const logList = document.querySelector(".log-list");
+
+  db.collection("Login_history").where("user", "==", user).get().then((querySnapshot) => {
+    let logins = 0;
+      querySnapshot.forEach((doc) => {
+        logins += 1;
+          var date = new Date(doc.data().date.seconds * 1000);
+
+          logList.innerHTML += "<h4><span>Loged in </span>"+date.getDate()+" - "+date.getMonth()+" - "+date.getFullYear()+" - "+date.getHours()+"</h4>"
+      });
+
+      // console.log("these are logins: "+ logins);
+      document.getElementById("entries").innerHTML = logins;
+  });
+
+  </script>
 </html>

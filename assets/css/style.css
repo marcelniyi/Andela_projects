@@ -369,7 +369,7 @@ input[type=text], input[type=password], textarea {
 
 }
 
-.register-form form input[type=text] {
+.register-form form input[type=text], .register-form form input[type=password] {
   width: 80%;
   padding: 12px 20px;
   margin-top: 20px;
@@ -784,9 +784,11 @@ input[type=text], input[type=password], textarea {
 }
 
 .admin-leftnav {
+
   background-color: #2196F3;
   height: 100%;
   box-shadow: 5px 10px 8px #888888;
+
 }
 
 
@@ -798,6 +800,7 @@ input[type=text], input[type=password], textarea {
   margin-left: 25px;
   margin-top: 30px;
   margin-bottom: 20px;
+
 }
 
 
@@ -878,6 +881,13 @@ input[type=text], input[type=password], textarea {
   text-decoration: none;
 }
 
+#Comments {
+  padding: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+
 #newboutton {
   text-decoration: none;
   padding: 10px;
@@ -896,10 +906,28 @@ input[type=text], input[type=password], textarea {
    margin-left: 40%;
 }
 
+.newpost-section .submit img{
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   font-size: 16px;
+   border-radius: 14px;
+   margin-left: 40%;
+}
+
+
+#titleError, #descError, #imageError {
+  color: red;
+  margin-left: 40px;
+}
+
+
+
+
 
 .articles-container .contains .users-section{
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 25% 20% 20% 35%;
   margin: 20px;
 }
 
@@ -913,4 +941,55 @@ input[type=text], input[type=password], textarea {
   padding: 10px;
   background-color: orange;
   color: white;
+}
+
+.articles-container .contains input[type=text]{
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.articles-container .contains .select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+
+
+
+.guest-user {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin: 50px;
+
+}
+
+.guest-user .guest-nav {
+  background-color: white;
+  margin-right: 10px;
+}
+
+.guest-user .nav-links {
+  padding: 30px;
+  font-size: 20px;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.guest-user .nav-links a{
+  text-decoration: none;
+  color: #0078FF;
+}
+
+.guest-content .articles-container {
+  margin: 0px;
+  border-radius: 0;
 }

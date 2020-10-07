@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+
+    <script type="text/javascript" src="assets/js/adminConfig.js"></script>
+
 
   </head>
   <body style="background-color: #E9E9E9">
@@ -47,6 +55,11 @@
 
           <div class="contains">
 
+            <input type="text" placeholder="Search">
+            <select class="select" name="">
+              <option value="">All blog</option>
+              <option value="">My blog</option>
+            </select>
             <div class="atricles">
               <div class="title">
                 Title
@@ -58,27 +71,7 @@
                 Actions <a href="newpost.html" id="newboutton">Add new story</a>
               </div>
             </div>
-
             <hr>
-            <div class="atricles">
-              <div class="title">
-                This is the first articles 1
-                <div class="descriptions">
-                  <img src="assets/images/AWS_careers.jpg" alt="" width="200px">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-              </div>
-              <div class="art-date">
-                24/11/2020
-              </div>
-              <div class="action">
-                <a href="update.html" id="update">update</a><a href="#" id="delete">delete</a>
-              </div>
-            </div>
-
-            <hr>
-
-
 
           </div>
 
@@ -88,4 +81,53 @@
     </div>
 
   </body>
+<script type="text/javascript">
+
+function getData(){
+
+db.collection("Blogs").where("postedBy", "==", user).orderBy("date", "desc").get().then((querySnapshot) => {
+  let blogPost = document.querySelector(".contains");
+    querySnapshot.forEach((doc) => {
+        var date = new Date(doc.data().date.seconds * 1000);
+        //console.log(doc.data().title);
+        blogPost.innerHTML +=
+        `<div class="atricles">
+          <div class="title">
+            ${doc.data().title}
+            <div class="descriptions">
+              <img src="${doc.data().image}" alt="" width="200px">
+              <p>${doc.data().descriptions}</p>
+            </div>
+          </div>
+          <div class="art-date">
+
+            ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}
+          </div>
+          <div class="action">
+            <span href="#" data-id="${doc.id}" id="update">update</span><span href="" id="delete" data-id="${doc.id}" onclick='delete_post("${doc.id}")'>delete</span>
+          </div>
+        </div>
+        <hr>
+        `;
+
+    });
+});
+}
+
+getData();
+
+function delete_post(key){
+    confirm("Are you sure to delete");
+    db.collection("Blogs").doc(key).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+
+    getData();
+
+}
+
+
+</script>
 </html>

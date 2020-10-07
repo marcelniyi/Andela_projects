@@ -45,12 +45,12 @@
           </div>
         </div>
 
-        <form method="post">
-          <input type="text" placeholder="Your name">
-          <input type="text" placeholder="Email">
-          <input type="text" placeholder="Password">
-          <input type="text" placeholder="Confirm password">
-          <input type="submit" name="" value="Submit">
+        <form id="signup-form">
+          <input type="text" id="name" placeholder="Your name">
+          <input type="text" id="email" placeholder="Email">
+          <input type="password" id="password" placeholder="Password">
+          <input type="password" id="cpassword" placeholder="Confirm password">
+          <input type="submit" id="submit" name="" value="Submit">
         </form>
 
 
@@ -68,6 +68,64 @@
 
 
   </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+
+<script type="text/javascript" src="assets/js/config.js"></script>
+<script>
+
+const signupForm = document.querySelector('#signup-form');
+signupForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const cpassword = document.getElementById("cpassword").value;
+  if(email !=='' && password !=='' && cpassword !==''){
+    if(password===cpassword){
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(function(user){
+        db.collection("Users").doc(user.user.uid).set({
+           names: name,
+           email: email,
+           role: "Guest",
+           date: new Date()
+        });
+       signupForm.reset();
+       alert("Account created succefully, you can log in");
+      })
+      .catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage);
+      });
+    } else {
+      alert("user identical password");
+    }
+  }
+
+
+
+});
+
+init();
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
 </body>
 
 </html>
