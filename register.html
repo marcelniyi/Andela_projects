@@ -46,11 +46,12 @@
         </div>
 
         <form id="signup-form">
-          <input type="text" id="name" placeholder="Your name">
-          <input type="text" id="email" placeholder="Email">
-          <input type="password" id="password" placeholder="Password">
-          <input type="password" id="cpassword" placeholder="Confirm password">
+          <input type="text" id="name" placeholder="Your name"><span id="nameError"></span>
+          <input type="text" id="email" placeholder="Email"><span id="emailError"></span>
+          <input type="password" id="password" placeholder="Password"><span id="passwordError"></span>
+          <input type="password" id="cpassword" placeholder="Confirm password"><span id="cpasswordError"></span>
           <input type="submit" id="submit" name="" value="Submit">
+          <span id="loading"></span>
         </form>
 
 
@@ -85,8 +86,21 @@ signupForm.addEventListener('submit', (e) => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const cpassword = document.getElementById("cpassword").value;
-  if(email !=='' && password !=='' && cpassword !==''){
-    if(password===cpassword){
+  if(name == ''){document.querySelector("#nameError").innerHTML="<br>* Name is required"; return false }
+  if(email == ''){document.querySelector("#emailError").innerHTML="<br>* Email are required"; return false }
+  if(email.indexOf("@") < 1 || email.indexOf(".") < 1){document.querySelector("#emailError").innerHTML="<br>* Invalid email"; return false }
+  if(password == ''){document.querySelector("#passwordError").innerHTML="* <br>Password is required"; return false }
+  if(password.length < 6 ){document.querySelector("#passwordError").innerHTML="<br>* Password must be 6 characters"; return false }
+  const strongPassword = /[a-zA-Z]/;
+  if(!strongPassword.test(password)) { document.querySelector("#passwordError").innerHTML="<br>* Password must contain one uppercase (A-Z)"; return false }
+
+  if(cpassword == ''){document.querySelector("#cpasswordError").innerHTML="<br>* Confirmation password is required"; return false }
+  if(cpassword != password){document.querySelector("#cpasswordError").innerHTML="<br>* Password must be the same"; return false }
+
+  document.getElementById("submit").style.display = "none";
+  document.getElementById("loading").innerHTML = "<img src='assets/images/load2.gif' >";
+
+
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function(user){
         db.collection("Users").doc(user.user.uid).set({
@@ -103,10 +117,8 @@ signupForm.addEventListener('submit', (e) => {
         var errorMessage = error.message;
         alert(errorMessage);
       });
-    } else {
-      alert("user identical password");
-    }
-  }
+      document.getElementById("submit").style.display = "initial";
+        document.getElementById("loading").innerHTML = "";
 
 
 

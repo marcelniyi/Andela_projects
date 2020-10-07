@@ -916,7 +916,14 @@ input[type=text], input[type=password], textarea {
 }
 
 
-#titleError, #descError, #imageError {
+#titleError,
+#descError,
+#imageError,
+#nameError,
+#emailError,
+#passwordError,
+#cpasswordError 
+{
   color: red;
   margin-left: 40px;
 }
