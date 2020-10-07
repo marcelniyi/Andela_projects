@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+  <script type="text/javascript" src="assets/js/config.js"></script>
+
 </head>
 
 <body>
@@ -169,19 +176,21 @@
           <h2>Send us message</h2>
           <div class="umurongo"></div>
 
-          <form class="" action="index.html" method="post">
+          <form id="contactForm">
             <div class="form-grid">
               <div class="input1">
-                <input type="text" placeholder="Names: ">
+                <input type="text" placeholder="Names:" id="names">
+                <span id="nameError"></span>
               </div>
               <div class="input2">
-                <input type="text" placeholder="Email: ">
+                <input type="text" placeholder="Email: " id="email">
+                <span id="emailError"></span>
               </div>
               <div class="input3">
-                <textarea name="" placeholder="Message"></textarea>
+                <textarea name="" placeholder="Message" id="message"></textarea>
               </div>
               <div class="input4">
-                <input type="submit" name="" value="Submit">
+                <input type="submit" class="submit" value="Submit">
               </div>
             </div>
           </form>
@@ -214,6 +223,35 @@
 
 </body>
 <script type="text/javascript">
-  
+
+
+document.querySelector("#contactForm").addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const submit = document.querySelector(".submit");
+
+    const names = document.querySelector("#names").value;
+    const email = document.querySelector("#email").value;
+    const message = document.querySelector("#message").value;
+
+
+    if(names == ''){document.querySelector("#nameError").innerHTML="* Names are required"; return false }
+    if(email == ''){document.querySelector("#emailError").innerHTML="* Email is required"; return false }
+    if(email.indexOf("@") < 1 || email.indexOf(".") < 1){document.querySelector("#emailError").innerHTML="<br>* Invalid email"; return false }
+    if(message == ''){document.querySelector("#messageError").innerHTML="* Message is required"; return false }
+
+
+    submit.value = "Submiting....";
+
+      db.collection("Questions").add({
+         name: names,
+         email: email,
+         message: message,
+         date: new Date()
+      });
+      document.getElementById("contactForm").reset();
+      submit.value = "Submit";
+  });
+
 </script>
 </html>
