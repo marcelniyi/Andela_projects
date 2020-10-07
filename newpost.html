@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+
+    <script type="text/javascript" src="assets/js/adminConfig.js"></script>
+
 
   </head>
   <body style="background-color: #E9E9E9">
@@ -48,28 +56,33 @@
           <div class="contains">
 
             <div class="newpost-section">
+<form id="blog">
 
-              <div class="title">
+    <div class="title">
                 Title
               </div>
               <div class="title-input">
-                <input type="text" name="" value="">
+                <input type="text" name="" value="" id="title">
+                <span id="titleError"></span>
               </div>
               <div class="descriptions">
                 Descriptinos
               </div>
               <div class="desc-input">
-                <textarea name="name" rows="8" cols="80"></textarea>
+                <textarea name="name" rows="8" cols="80" id="descriptions"></textarea>
+                <span id="descError"></span>
               </div>
               <div class="image">
                 Image
               </div>
               <div class="image-file">
-                <input type="file" name="" value="">
+                <input type="file" id="image">
+                <span id="imageError"></span>
               </div>
               <div class="submit">
                 <input type="submit" name="" value="Submit">
               </div>
+            </form>
 
 
             </div>
@@ -86,4 +99,59 @@
     </div>
 
   </body>
+
+<script type="text/javascript">
+
+const blogForm = document.querySelector("#blog");
+  blogForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const submit = document.querySelector(".submit");
+
+    const title = document.querySelector("#title").value;
+    const descriptions = document.querySelector("#descriptions").value;
+    const image = document.querySelector("#image").files[0];
+
+
+    if(title == ''){document.querySelector("#titleError").innerHTML="* Title is required"; return false }
+    if(descriptions == ''){document.querySelector("#descError").innerHTML="* Descriptions are required"; return false }
+    if(document.getElementById("image").files.length == 0){document.querySelector("#imageError").innerHTML="* Image is required"; return false }
+
+    const imageName = image.name;
+
+    submit.innerHTML = "<img src='assets/images/load2.gif' >";
+    var storageRef=storage.ref('blogImages/'+imageName);
+
+
+    var uploadTask=storageRef.put(image);
+    uploadTask.on('state_changed',function (snapshot) {
+        var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+    },function (error) {
+        console.log(error.message);
+    },function () {
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downlaodURL) {
+            //console.log(downlaodURL);
+            db.collection("Blogs").add({
+               title: title,
+               descriptions: descriptions,
+               image: downlaodURL,
+               date: new Date(),
+               postedBy: user
+            });
+            blogForm.reset();
+            submit.innerHTML = "<input type='submit' value='Submit'>";
+        });
+    });
+
+
+
+
+
+  });
+
+
+
+</script>
+
+
 </html>
