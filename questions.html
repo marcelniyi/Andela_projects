@@ -5,6 +5,11 @@
     <title>NIYITEGEKA MARCEL</title>
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
 
 
   </head>
@@ -63,22 +68,6 @@
             </div>
 
             <hr>
-            <div class="question-section">
-              <div class="title">
-                this is a sent question
-              </div>
-              <div class="question">
-                numugod@yahoo.fr
-              </div>
-              <div class="art-date">
-                24/11/2020
-              </div>
-              <div class="action">
-                <a href="#" id="update">Respond</a><a href="#" id="delete">Delete</a>
-              </div>
-            </div>
-
-            <hr>
 
 
 
@@ -90,4 +79,41 @@
     </div>
 
   </body>
+  <script type="text/javascript" src="assets/js/adminConfig.js"></script>
+  <script type="text/javascript">
+
+let container = document.querySelector(".contains");
+  db.collection("Questions").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+      var date = new Date(doc.data().date.seconds * 1000);
+
+          container.innerHTML +=
+          ` <div class="question-section">
+            <div class="title">
+              ${doc.data().message}
+            </div>
+            <div class="question">
+              ${doc.data().email}
+            </div>
+            <div class="art-date">
+              ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}
+            </div>
+            <div class="action">
+              <a href="#" id="update">Respond</a><a href="#" id="delete">Delete</a>
+            </div>
+          </div>
+
+          <hr>`;
+
+      });
+
+  });
+
+
+
+
+
+
+
+  </script>
 </html>
