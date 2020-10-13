@@ -10,11 +10,20 @@
   };
   firebase.initializeApp(config);
   const db = firebase.firestore();
+  const storage = firebase.storage();
+  const auth = firebase.auth();
 
 function init(){
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+
     db.collection('Users').doc(user.uid).get().then((data) => {
+      localStorage.setItem("username", data.data().names);
+
+      const user = {"uid": data.id}
+      localStorage.setItem("user", JSON.stringify(user));
+      // alert(user.uid);
+
         if(data.data().role === "Admin"){
           window.location.href = "dashboard.html";
         }
@@ -27,3 +36,10 @@ function init(){
   }
   });
 }
+
+
+const currentUser = JSON.parse(localStorage.getItem("user"));
+const user = currentUser.uid;
+
+const userName = localStorage.getItem("username");
+console.log(userName);

@@ -19,7 +19,7 @@
         <h2>Admin panel</h2>
       </div>
       <div class="topnav-right">
-        <h4>marcelniyi@gmail.com</h4><a href="index.html">
+        <h4></h4><a href="#">
           <img src="assets/images/logout1.png" alt="">
 
         </a>
@@ -41,7 +41,7 @@
           <a href="questions.html"><img src="assets/images/questions.svg" alt="dashboard"></a>
         </div>
         <div class="dash-logo">
-          <a href="remainders.html"><img src="assets/images/remainder.svg" alt="dashboard"></a>
+          <a href="profileUpdate.html"><img src="assets/images/remainder.svg" alt="dashboard"></a>
         </div>
 
       </div>
@@ -107,6 +107,11 @@ let container = document.querySelector(".contains");
 
       });
 
+      db.collection('Users').doc(user).get().then((data) => {
+          document.querySelector(".topnav-right h4").innerHTML =
+          `${data.data().email}`
+
+      })
   });
 
 

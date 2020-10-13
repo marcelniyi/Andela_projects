@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+  <script type="text/javascript" src="assets/js/config.js"></script>
 </head>
 
 <body>
@@ -33,36 +39,12 @@
     <div class="blog-content">
       <div class="left">
         <div class="left-side">
-          <img src="assets/images/AWS_careers.jpg" alt="amazon">
 
-          <h2>title of the blog</h3><span>15 Sept 2020</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <hr>
-          <span class="blog-by"> By Max Niyi. posted on 13 Jul 2020</span>
-          <hr>
 
         </div>
         <div class="comment-box">
 
-          <div class="contact-form">
 
-            <form class="" action="index.html" method="post">
-              <div class="form-grid">
-                <div class="input1">
-                  <input type="text" placeholder="Names: ">
-                </div>
-                <div class="input2">
-                  <input type="text" placeholder="Email: ">
-                </div>
-                <div class="input3">
-                  <textarea name="" placeholder="Comment"></textarea>
-                </div>
-                <div class="input4">
-                  <input type="submit" name="" value="Submit">
-                </div>
-              </div>
-            </form>
-          </div>
 
         </div>
 
@@ -71,19 +53,10 @@
             <hr>
             <span>Comments ( 2 ) </span>
           </div>
-          <div class="comment">
-            <div class="user">
-              <span>marcel</span>
-            </div>
-            <div class="date">
-              2 days ago
-            </div>
-            <div class="text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
 
         </div>
+
+
       </div>
 
 
@@ -161,4 +134,110 @@
   </div>
 </body>
 
+
+<script type="text/javascript">
+  var url_string = document.URL; //window.location.href
+  var url = new URL(url_string);
+  var blog = url.searchParams.get("blog");
+
+  //console.log(blog);
+
+  db.collection("Blogs").doc(blog).get().then(function(doc) {
+    if (doc.exists) {
+            let blogPost = document.querySelector(".left-side");
+
+            var date = new Date(doc.data().date.seconds * 1000);
+
+            blogPost.innerHTML +=
+            ` <img src="${doc.data().image}" alt="${doc.data().title}">
+              <h2>${doc.data().title}</h3>
+              <span>15 Sept 2020</span>
+              <p>${doc.data().descriptions}</p>
+              <hr>
+              <span class="blog-by"> By ${doc.data().userName}. posted on ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} </span>
+              <hr>
+            `;
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch(function(error) {
+    console.log("Error getting document:", error);
+});
+
+if(user != ''){
+  document.querySelector(".comment-box").innerHTML =
+  `
+  <div class="contact-form">
+    <form class="commentForm" action="index.html" method="post">
+      <div class="form-grid">
+        <div class="input3">
+          <textarea name="" id="commentBox" placeholder="Comment" required></textarea>
+        </div>
+        <div class="input4">
+          <input type="submit" name="" value="Submit">
+        </div>
+      </div>
+    </form>
+  </div>
+  `
+
+} else {
+  document.querySelector(".comment-box").innerHTML = "<a href='login.html'>Login to give comment</a>";
+}
+
+document.querySelector(".commentForm").addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let comment = document.getElementById("commentBox").value;
+
+  db.collection("Comments").add({
+     comment: comment,
+     user: user,
+     userName: userName,
+     blogId: blog,
+     date: new Date()
+  });
+
+  document.querySelector(".commentForm").reset();
+  document.querySelector(".single-comment").innerHTML +=
+  `<div class="comment">
+    <div class="user">
+      <span>${userName}</span>
+    </div>
+    <div class="date">
+
+    </div>
+    <div class="text">
+      <p>${comment}</p>
+    </div>
+  </div>`;
+});
+
+
+db.collection("Comments").where("blogId", "==", blog).get().then((querySnapshot) => {
+  let blogPost = document.querySelector(".single-comment");
+    querySnapshot.forEach((doc) => {
+      //console.log(doc.data().comment);
+      blogPost.innerHTML +=
+      `
+      <div class="comment">
+        <div class="user">
+          <span>${doc.data().userName}</span>
+        </div>
+        <div class="date">
+
+        </div>
+        <div class="text">
+          <p>${doc.data().comment}</p>
+        </div>
+      </div>
+      `
+
+    });
+});
+
+
+
+</script>
 </html>

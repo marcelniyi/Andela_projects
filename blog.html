@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+  <script type="text/javascript" src="assets/js/config.js"></script>
+
 </head>
 
 <body>
@@ -35,52 +43,45 @@
 <div class="whole-blogs">
 
 
-  <div class="blogs">
-    <div class="years">
-      2016
-    </div>
-    <div class="images">
-      <img src="assets/images/AWS_careers.jpg" alt="amazon">
-    </div>
-    <div class="post-title">
-      <span>15 Sept 2020</span>
-      <h3>Anouncing PHP Testfest 2017</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <span>Posted by <b>Marcel NIYITEGEKA</b> on <b>13 sept 2020</b>
-      </span>
-      <br>
-      <br>
-      <a href="singlePost.html" class="button">READ MORE</a>
-    </div>
-  </div>
-
-
-
-  <div class="blogs">
-    <div class="years">
-      2020
-    </div>
-    <div class="images">
-      <img src="assets/images/defaultAndela.png" alt="andela">
-    </div>
-    <div class="post-title">
-      <span>15 Sept 2020</span>
-      <h3>Anouncing PHP Testfest 2017</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <span>Posted by <b>Marcel NIYITEGEKA</b> on <b>13 sept 2020</b>
-      </span>
-      <br>
-      <br>
-      <a href="singlePost.html" class="button">READ MORE</a>
-    </div>
-  </div>
-
-
-
 </div>
 
 </div>
   </div>
 </body>
+<script type="text/javascript">
 
+db.collection("Blogs").orderBy("date", "desc").get().then((querySnapshot) => {
+  let blogPost = document.querySelector(".whole-blogs");
+    querySnapshot.forEach((doc) => {
+        var date = new Date(doc.data().date.seconds * 1000);
+        //console.log(doc.data().title);
+        blogPost.innerHTML +=
+        `  <div class="blogs">
+            <div class="years">
+              2016
+            </div>
+            <div class="images">
+              <img src="${doc.data().image}" alt="${doc.data().title}">
+            </div>
+            <div class="post-title">
+              <span>15 Sept 2020</span>
+              <h3>${doc.data().title}</h3>
+              <p>${doc.data().descriptions}</p>
+              <span>Posted by <b>${doc.data().userName}</b> on <b>13 sept 2020</b>
+              </span>
+              <br>
+              <br>
+              <a href="singlePost.html?blog=${doc.id}" class="button">READ MORE</a>
+            </div>
+          </div>
+        `;
+
+    });
+});
+
+
+
+
+
+</script>
 </html>

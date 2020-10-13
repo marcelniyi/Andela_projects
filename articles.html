@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -22,7 +23,7 @@
         <h2>Admin panel</h2>
       </div>
       <div class="topnav-right">
-        <h4>marcelniyi@gmail.com</h4><a href="#">
+        <h4></h4><a href="#">
           <img src="assets/images/logout1.png" alt="">
 
         </a>
@@ -44,13 +45,13 @@
           <a href="questions.html"><img src="assets/images/questions.svg" alt="dashboard"></a>
         </div>
         <div class="dash-logo">
-          <a href=""><img src="assets/images/remainder.svg" alt="dashboard"></a>
+          <a href="profileUpdate.html"><img src="assets/images/remainder.svg" alt="dashboard"></a>
         </div>
 
       </div>
       <div class="admin-space">
 
-        <div class="articles-container">
+        <div class="articles-container" id="articleList">
           <h2>List of all articles</h2>
 
           <div class="contains">
@@ -77,11 +78,53 @@
 
         </div>
 
+
+        <div class="articles-container" id="updateBlog">
+          <h2>Update blog</h2>
+
+          <div class="contains">
+
+            <div class="newpost-section">
+        <form id="blog">
+
+        <div class="title">
+                Title
+              </div>
+              <div class="title-input">
+                <input type="text" name="" value="" id="title">
+                <span id="titleError"></span>
+              </div>
+              <div class="descriptions">
+                Descriptinos
+              </div>
+              <div class="desc-input">
+                <textarea name="name" rows="8" cols="80" id="descriptions"></textarea>
+                <span id="descError"></span>
+              </div>
+
+              <div class="submit">
+                <input type="submit" name="" value="Submit">
+              </div>
+            </form>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+
       </div>
     </div>
 
   </body>
 <script type="text/javascript">
+
+document.getElementById("updateBlog").style.display = "none";
 
 function getData(){
 
@@ -104,7 +147,7 @@ db.collection("Blogs").where("postedBy", "==", user).orderBy("date", "desc").get
             ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}
           </div>
           <div class="action">
-            <span href="#" data-id="${doc.id}" id="update">update</span><span href="" id="delete" data-id="${doc.id}" onclick='delete_post("${doc.id}")'>delete</span>
+            <span onclick='update_post("${doc.id}", "${doc.data().title}", "${doc.data().descriptions}")' id="update">update</span><span href="" id="delete" data-id="${doc.id}" onclick='delete_post("${doc.id}")'>delete</span>
           </div>
         </div>
         <hr>
@@ -120,13 +163,50 @@ function delete_post(key){
     confirm("Are you sure to delete");
     db.collection("Blogs").doc(key).delete().then(function() {
         console.log("Document successfully deleted!");
+        location.reload();
     }).catch(function(error) {
         console.error("Error removing document: ", error);
     });
 
-    getData();
 
 }
+
+let blog_id = '';
+function update_post(index, title, descriptions) {
+  document.getElementById("updateBlog").style.display = "block";
+  document.getElementById("articleList").style.display = "none"
+
+  document.getElementById("title").value = title;
+  document.getElementById("descriptions").value = descriptions;
+  blog_id = index;
+
+}
+
+document.getElementById("blog").addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  db.collection("Blogs").doc(blog_id).update({
+      title: document.getElementById("title").value,
+      descriptions: document.getElementById("descriptions").value
+  })
+  .then(function() {
+      console.log("Document successfully updated!");
+      location.reload();
+  })
+  .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+  });
+
+})
+
+db.collection('Users').doc(user).get().then((data) => {
+
+
+    document.querySelector(".topnav-right h4").innerHTML =
+    `${data.data().email}`
+
+})
 
 
 </script>

@@ -28,3 +28,6 @@ if (user) {
 
 const currentUser = JSON.parse(localStorage.getItem("user"));
 const user = currentUser.uid;
+
+const userName = localStorage.getItem("username");
+console.log(userName);
