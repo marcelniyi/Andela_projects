@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+
+
 
   </head>
   <body style="background-color: #E9E9E9">
@@ -14,7 +21,7 @@
         <h2>Admin panel</h2>
       </div>
       <div class="topnav-right">
-        <h4>marcelniyi@gmail.com</h4><a href="index.html">
+        <h4></h4><a href="#">
           <img src="assets/images/logout1.png" alt="">
 
         </a>
@@ -36,7 +43,7 @@
           <a href="questions.html"><img src="assets/images/questions.svg" alt="dashboard"></a>
         </div>
         <div class="dash-logo">
-          <a href="remainders.html"><img src="assets/images/remainder.svg" alt="dashboard"></a>
+          <a href="profileUpdate.html"><img src="assets/images/remainder.svg" alt="dashboard"></a>
         </div>
 
       </div>
@@ -65,46 +72,8 @@
             </div>
 
             <hr>
-            <div class="users-section">
-              <div class="title">
-                numugabo odilon
-              </div>
-              <div class="question">
-                10/12/2019
-              </div>
-              <div class="art-date">
-                <span class="active">Active</span>
-              </div>
-              <div class="action">
-                <select class="" name="">
-                  <option value="">Guest</option>
-                  <option value="">Admin</option>
-                </select>
-                <a href="#" id="update">desactivate</a><a href="#" id="delete">Delete</a>
-              </div>
-            </div>
 
-            <hr>
-            <div class="users-section">
-              <div class="title">
-                Niyitegeka marcel
-              </div>
-              <div class="question">
-                10/12/2019
-              </div>
-              <div class="art-date">
-                <span class="inactive">inactive</span>
-              </div>
-              <div class="action">
-                <select class="" name="">
-                  <option value="">Guest</option>
-                  <option value="">Admin</option>
-                </select>
-                <a href="#" id="update">desactivate</a><a href="#" id="delete">Delete</a>
-              </div>
-            </div>
 
-            <hr>
 
 
 
@@ -116,4 +85,61 @@
     </div>
 
   </body>
+
+    <script type="text/javascript" src="assets/js/adminConfig.js"></script>
+    <script type="text/javascript">
+
+    let users = document.querySelector(".contains");
+    db.collection("Users").get().then((querySnapshot) => {
+
+        querySnapshot.forEach((doc) => {
+          var date = new Date(doc.data().date.seconds * 1000);
+            users.innerHTML +=
+            `
+              <div class="users-section">
+              <div class="title">
+                ${doc.data().names}
+              </div>
+              <div class="question">
+                ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}/${date.getHours()}
+              </div>
+              <div class="art-date">
+                <span class="active">Active</span>
+              </div>
+              <div class="action">
+                <select class="pregilage" onChange="changeRole('${doc.id}', this.value)">
+                  <option value="Guest" ${ doc.data().role =='Guest'? 'selected' : ''}>Guest</option>
+                  <option value="Admin" ${ doc.data().role =='Admin'? 'selected' : ''}>Admin</option>
+                </select>
+                <a href="#" id="update">desactivate</a><a href="#" id="delete">Delete</a>
+              </div>
+            </div>
+
+            <hr>
+            `
+        });
+
+    });
+
+    function changeRole(user, role){
+
+      db.collection("Users").doc(user).update({
+          role: role
+      })
+      .then(function() {
+          console.log("Document successfully updated!");
+
+      })
+      .catch(function(error) {
+          console.error("Error updating document: ", error);
+      });
+    }
+
+    db.collection('Users').doc(user).get().then((data) => {
+        document.querySelector(".topnav-right h4").innerHTML =
+        `${data.data().email}`
+
+    })
+
+    </script>
 </html>

@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+  <script type="text/javascript" src="assets/js/config.js"></script>
 </head>
 
 <body>
@@ -47,7 +53,9 @@
 
         <form id="login-form">
           <input type="text" id="email" placeholder="Email">
+          <span id="emailError"></span>
           <input type="password" id="password" placeholder="Password">
+          <span id="passwordError"></span>
           <br>
           <input type="checkbox"><span>Remember me</span>
           <input type="submit" name="" value="Login">
@@ -74,10 +82,7 @@
   </div>
 </body>
 
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
-<script type="text/javascript" src="assets/js/config.js"></script>
+
 
 
 <script type="text/javascript">
@@ -87,6 +92,10 @@ loginForm.addEventListener('submit', (e) => {
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+
+  if(email == ''){document.querySelector("#emailError").innerHTML="<br>* Email are required"; return false }
+  if(password == ''){document.querySelector("#passwordError").innerHTML="<br>* Password is required"; return false }
+
 
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((cred) => {

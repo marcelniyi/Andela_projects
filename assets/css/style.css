@@ -174,7 +174,10 @@ body {
   grid-template-columns: 33% 33% 33%;
 }
 
-
+.blog-item a{
+  text-decoration: none;
+  color: black;
+}
 
 .blog-item .container {
   background-color: white;
@@ -916,7 +919,14 @@ input[type=text], input[type=password], textarea {
 }
 
 
-#titleError, #descError, #imageError {
+#titleError,
+#descError,
+#imageError,
+#nameError,
+#emailError,
+#passwordError,
+#cpasswordError
+{
   color: red;
   margin-left: 40px;
 }

@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+
+    <script type="text/javascript" src="assets/js/adminConfig.js"></script>
+
 
   </head>
   <body style="background-color: #E9E9E9">
@@ -14,7 +22,7 @@
         <h2>Admin panel</h2>
       </div>
       <div class="topnav-right">
-        <h4>marcelniyi@gmail.com</h4><a href="index.html">
+        <h4></h4><a href="index.html">
           <img src="assets/images/logout1.png" alt="">
 
         </a>
@@ -36,39 +44,48 @@
           <a href="questions.html"><img src="assets/images/questions.svg" alt="dashboard"></a>
         </div>
         <div class="dash-logo">
-          <a href="remainders.html"><img src="assets/images/remainder.svg" alt="dashboard"></a>
+          <a href="profileUpdate.html"><img src="assets/images/remainder.svg" alt="dashboard"></a>
         </div>
 
       </div>
       <div class="admin-space">
 
         <div class="articles-container">
-          <h2>Add new blog post</h2>
+          <h2>Update profile </h2>
 
           <div class="contains">
 
             <div class="newpost-section">
-
+              <form id="updateForm">
               <div class="title-input">
-                <input type="text" name="" value="Niyitegeka Marcel">
+                <input type="text" id="names" placeholder="Names">
               </div>
 
               <div class="desc-input">
-                <input type="text" name="" value="marcelniyi">
-              </div>
-              <div class="desc-input">
-                <input type="text" name="" value="niyitegekamar@gmail.com">
+                <input type="text" id="phone" value="" placeholder="Phone">
               </div>
 
-              <div class="image-file">
-                <input type="password" name="" value="enter password">
+              <div class="desc-input">
+                <input type="text" id="location" value="" placeholder="Location address">
               </div>
+
+              <div class="desc-input">
+                <input type="text" id="ocup" placeholder="Occupation">
+              </div>
+
+              <div class="desc-input">
+                Profile image:
+                <input type="file" id="image">
+              </div>
+
+
               <div class="submit">
-                <input type="submit" name="" value="Submit">
+                <input type="submit" class="submit" name="" value="Submit">
               </div>
 
-
+              </form>
             </div>
+
 
 
 
@@ -82,4 +99,58 @@
     </div>
 
   </body>
+  <script type="text/javascript">
+
+  const blogForm = document.querySelector("#updateForm");
+    blogForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+
+      const submit = document.querySelector(".submit");
+
+      const names = document.querySelector("#names").value;
+      const phone = document.querySelector("#phone").value;
+      const ocupation = document.querySelector("#ocup").value;
+      const location = document.querySelector("#location").value;
+      const image = document.querySelector("#image").files[0];
+
+      const imageName = image.name;
+
+      var storageRef=storage.ref('blogImages/'+imageName);
+
+
+      var uploadTask=storageRef.put(image);
+      uploadTask.on('state_changed',function (snapshot) {
+          var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      },function (error) {
+          console.log(error.message);
+      },function () {
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downlaodURL) {
+            db.collection("Users").doc(user).update({
+                names: names,
+                phone: phone,
+                location: location,
+                ocupation: ocupation,
+                image: downlaodURL
+            }).then(function() {
+                console.log("Document successfully updated!");
+                location.reload();
+            })
+
+
+          });
+      });
+
+    });
+
+    db.collection('Users').doc(user).get().then((data) => {
+        document.querySelector(".topnav-right h4").innerHTML =
+        `${data.data().email}`
+
+    })
+
+
+
+
+  </script>
 </html>
