@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>MARCEL NIYITEGEKA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+
+  <script type="text/javascript" src="assets/js/config.js"></script>
+</head>
+
+<body>
+  <div class="page-container">
+    <div class="navbar">
+
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+
+      <h3 class="logo"> NIYITEGEKA MARCEL</h3>
+
+      <div class="navbar-links">
+        <a href="index.html">HOME</a>
+        <a href="resume.html">RESUME</a>
+        <a href="blog.html">BLOG</a>
+        <a href="userAdmin.html" id="active">ACCOUNT</a>
+        <a href="#" class="logout">LOGOUT</a>
+      </div>
+    </div>
+
+    <div class="guest-user">
+      <div class="guest-nav">
+        <div class="nav-links">
+          <a href="userAdmin.html">Articles</a>
+        </div>
+        <div class="nav-links">
+          <a href="userAdminprofile.html">profile update</a>
+        </div>
+        <!-- <div class="nav-links">
+          <a href="articles.html">Articles ( 5 )</a>
+        </div>
+        <div class="nav-links">
+          <a href="articles.html">Articles ( 5 )</a>
+        </div> -->
+      </div>
+      <div class="guest-content">
+
+
+        <div class="articles-container" id="articleList">
+          <div class="contains">
+
+            <div class="newpost-section">
+              <form id="updateForm">
+              <div class="title-input">
+                <input type="text" id="names" placeholder="Names">
+              </div>
+
+              <div class="desc-input">
+                <input type="text" id="phone" value="" placeholder="Phone">
+              </div>
+
+              <div class="desc-input">
+                <input type="text" id="location" value="" placeholder="Location address">
+              </div>
+
+              <div class="desc-input">
+                <input type="text" id="ocup" placeholder="Occupation">
+              </div>
+
+              <div class="desc-input">
+                Profile image:
+                <input type="file" id="image">
+              </div>
+
+
+              <div class="submit">
+                <input type="submit" class="submit" name="" value="Submit">
+              </div>
+
+              </form>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+</body>
+
+<script type="text/javascript">
+
+
+
+const blogForm = document.querySelector("#updateForm");
+  blogForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+
+    const submit = document.querySelector(".submit");
+
+    const names = document.querySelector("#names").value;
+    const phone = document.querySelector("#phone").value;
+    const ocupation = document.querySelector("#ocup").value;
+    const location = document.querySelector("#location").value;
+    const image = document.querySelector("#image").files[0];
+
+    const imageName = image.name;
+
+    var storageRef=storage.ref('blogImages/'+imageName);
+
+
+    var uploadTask=storageRef.put(image);
+    uploadTask.on('state_changed',function (snapshot) {
+        var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+    },function (error) {
+        console.log(error.message);
+    },function () {
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downlaodURL) {
+          db.collection("Users").doc(user).update({
+              names: names,
+              phone: phone,
+              location: location,
+              ocupation: ocupation,
+              image: downlaodURL
+          }).then(function() {
+              console.log("Document successfully updated!");
+              location.reload();
+          })
+
+        });
+    });
+
+  });
+
+</script>
+</html>
